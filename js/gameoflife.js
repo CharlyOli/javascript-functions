@@ -1,4 +1,7 @@
-function seed() {}
+function seed() {
+  return Array.prototype.slice.call(arguments);
+  
+}
 
 function same([x, y], [j, k]) {}
 
@@ -74,3 +77,6 @@ const startPatterns = {
   exports.startPatterns = startPatterns;
   exports.iterate = iterate;
   exports.main = main;
+
+
+  //this a test part testing 55
