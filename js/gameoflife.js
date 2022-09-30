@@ -1,4 +1,4 @@
-function seed() {
+function seed(a, b, c) {
   return Array.prototype.slice.call(arguments);
   
 }
@@ -18,8 +18,10 @@ const printCell = (cell, state) => {
 
 const corners = (state = []) => {
   if (state.length === 0) {
+   return {
     topRight: [0, 0],
     bottomLeft: [0, 0]
+   } 
   }
   const xs = state .map(([x, _]) => x);
   const ys = state .map(([x, y]) => y);
@@ -35,7 +37,7 @@ const printCells = (state) => {
   for (let y = topRight[1]; y >= bottomLeft[1]; y--) {
     let row = [];
     for (let x = bottomLeft[0]; x <= topRight[0]; x++) {
-    
+      row.push(printCell([x, y], state));
     }
     accumulator += row.join(" ") + "\n";
   }
@@ -49,7 +51,7 @@ const getNeighborsOf = ([x, y]) => [
 ];
 
 const getLivingNeighbors = (cell, state) => {
-  return getNeighborsOf(cell).filter.((n) => contains.bind(state)(n));
+  return getNeighborsOf(cell).filter((n) => contains.bind(state)(n));
 };
 
 const willBeAlive = (cell, state) => {
